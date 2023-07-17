@@ -9,7 +9,6 @@ const ProviderWrapper = (props) => {
   // const [gamesList, setgamesList] = useState([]);
   // const [salesList, setsalesList] = useState([]);
   const [playersList, setplayersList] = useState([]);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   // const [authUser, setAuthUser] = useState([]);
 
   const initialL = () => {
@@ -50,8 +49,6 @@ const ProviderWrapper = (props) => {
   const exposedValue = {
     playersList,
     setplayersList,
-    isUserLoggedIn,
-    setIsUserLoggedIn,
     //authUser,
     //setAuthUser,
     // gamesList,

@@ -1,31 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// import { Context as allContext } from "../../contexts/allContext";
 
 import "../HomePage/home.css";
 
 const Home = () => {
-  // const { playersList } = useContext(allContext);
   return (
     <section>
       <div className="container">
         <div className="row">
           <div className="col-md-4 border">
-            <div className="column">
-              {" "}
-              <Link to="/registerPlayer">register</Link>
-            </div>
+            <div className="column">Code</div>
           </div>
           <div className="col-md-4 border">
-            <div className="column">
-              {" "}
-              <Link to="/loginPlayer">login</Link>
-            </div>
+            <div className="column">says always</div>
           </div>
           <div className="col-md-4 border">
-            <div className="column">
-              <Link to="/demo">Demo</Link>
-            </div>
+            <div className="column">the truth</div>
           </div>
         </div>
       </div>

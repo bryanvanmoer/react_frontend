@@ -1,17 +1,21 @@
-import React, { useState, useContext } from "react";
-import { Context as allContext } from "../../contexts/allContext";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as playersService from "../../services/playerApi";
 
 const LoginPlayer = () => {
-  const { setIsUserLoggedIn } = useContext(allContext);
-
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const auth = localStorage.getItem("jwt");
+    if (auth) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -30,16 +34,14 @@ const LoginPlayer = () => {
     };
     playersService.login(nameObject).then((response) => {
       if (response) {
-        localStorage.setItem("jwtToken", response.token);
-        setIsUserLoggedIn(true);
-        setMessage("Connexion réussie");
+        localStorage.setItem("jwt", response.token);
+        setEmail("");
+        setPassword("");
+        navigate("/");
       } else {
         setMessage("Identifiants incorrects. Veuillez réessayer.");
       }
     });
-    setEmail("");
-    setPassword("");
-    navigate("/");
   };
   return (
     <div>
