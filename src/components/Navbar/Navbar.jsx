@@ -43,15 +43,20 @@ const Navbar = () => {
                 Demo
               </Link>
               {auth ? (
-                <Link onClick={logout} to="/loginPlayer" className="nav-link">
-                  Logout
-                </Link>
+                <>
+                  <Link onClick={logout} to="/" className="nav-link">
+                    Logout
+                  </Link>
+                  <Link to="/profile" className="nav-link">
+                    Profile
+                  </Link>
+                </>
               ) : (
                 <>
-                  <Link to="/loginPlayer" className="nav-link">
+                  <Link to="/login" className="nav-link">
                     Login
                   </Link>
-                  <Link to="/registerPlayer" className="nav-link">
+                  <Link to="/register" className="nav-link">
                     Register
                   </Link>
                 </>

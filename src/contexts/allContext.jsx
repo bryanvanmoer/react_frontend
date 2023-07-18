@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import * as gamesService from "../services/gamesApi.js";
 // import * as salesService from "../services/salesApi.js";
-import * as playersService from "../services/playerApi";
+// import * as playersService from "../services/playerApi";
+// import * as usersService from "../services/userApi";
 
 const Context = React.createContext(null);
 
@@ -9,6 +10,7 @@ const ProviderWrapper = (props) => {
   // const [gamesList, setgamesList] = useState([]);
   // const [salesList, setsalesList] = useState([]);
   const [playersList, setplayersList] = useState([]);
+  const [usersList, setUsersList] = useState([]);
   // const [authUser, setAuthUser] = useState([]);
 
   const initialL = () => {
@@ -18,9 +20,9 @@ const ProviderWrapper = (props) => {
     // salesService.retrieveAll().then((sa) => {
     //     setsalesList(sa);
     // });
-    playersService.retrieveAll().then((players) => {
-      setplayersList(players);
-    });
+    // playersService.retrieveAll().then((players) => {
+    //   setplayersList(players);
+    // });
   };
 
   useEffect(initialL, []);
@@ -49,6 +51,8 @@ const ProviderWrapper = (props) => {
   const exposedValue = {
     playersList,
     setplayersList,
+    usersList,
+    setUsersList,
     //authUser,
     //setAuthUser,
     // gamesList,
