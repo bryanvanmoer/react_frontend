@@ -7,8 +7,13 @@ const retrieveAll = () => {
   return request.then((response) => response.data);
 };
 
-const retrieveOne = () => {
-  const request = axios.get(`${baseUrl}:id`);
+const retrieveUser = () => {
+  const token = localStorage.getItem("jwt");
+  const request = axios.get(`${baseUrl}user`, {
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
   return request.then((response) => response.data);
 };
 
@@ -22,4 +27,4 @@ const login = (newVolume) => {
   return request.then((response) => response.data);
 };
 
-export { create, retrieveAll, retrieveOne, login };
+export { create, retrieveAll, retrieveUser, login };

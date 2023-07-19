@@ -8,7 +8,7 @@ const LoginUser = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  //const [message, setMessage] = useState("");
 
   useEffect(() => {
     const auth = localStorage.getItem("jwt");
@@ -32,16 +32,25 @@ const LoginUser = () => {
       email: email,
       password: password,
     };
-    usersService.login(nameObject).then((response) => {
-      if (response) {
+    usersService
+      .login(nameObject)
+      .then((response) => {
         localStorage.setItem("jwt", response.token);
         setEmail("");
         setPassword("");
         navigate("/");
-      } else {
-        setMessage("Identifiants incorrects. Veuillez réessayer.");
-      }
-    });
+      })
+      .catch((error) => {
+        console.log("Error login", error);
+
+        const divMessage = document.createElement("div");
+        divMessage.textContent = "Email or password incorrect.";
+        divMessage.className = "alert alert-danger mt-3";
+        divMessage.role = "alert";
+
+        const messageContainer = document.getElementById("messageError");
+        messageContainer.appendChild(divMessage);
+      });
   };
   return (
     <div>
@@ -88,7 +97,7 @@ const LoginUser = () => {
                       Submit
                     </button>
                   </form>
-                  <p>{message}</p>
+                  <div id="messageError"></div>
                 </div>
               </div>
             </div>
